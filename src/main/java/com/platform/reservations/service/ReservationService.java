@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 @Service
 public class ReservationService {
@@ -34,20 +35,18 @@ public class ReservationService {
             query.addCriteria(Criteria.where("name").is(name))
                     .addCriteria(Criteria.where("surname").is(surname))
                     .addCriteria(Criteria.where("voivodeship").is(voivodeship))
-                    .addCriteria(Criteria.where().is())
-                    .addCriteria(Criteria.where().is())
-                    .addCriteria(Criteria.where().is())
-                    .addCriteria(Criteria.where().is())
-                    .addCriteria(Criteria.where().is())
-                    .addCriteria(Criteria.where().is())
-                    .addCriteria(Criteria.where().is())
+                    .addCriteria(Criteria.where("cost").gt(costFrom).lt(costTo))
+                    .addCriteria(Criteria.where("numberOfTreatments").is(treatments))
+                    .addCriteria(Criteria.where("reservationDate"))
+                    .addCriteria(Criteria.where("arrivalDate").is(arrival))
+                    .addCriteria(Criteria.where("departureDate").is(departure))
+                    .addCriteria(Criteria.where("whichTime").is(whichTime))
+                    .addCriteria(Criteria.where("disease").is(disease));
 
 
 
     }
 
-    public List<Reservation> getFilteredList()  {
 
-    }
 
 }
