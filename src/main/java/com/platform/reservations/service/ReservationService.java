@@ -50,23 +50,12 @@ public class ReservationService {
             query.addCriteria(Criteria.where("whichTime").is(whichTime));
         }
         if (!disease.isEmpty()) {
-           query.addCriteria(Criteria.where("disease").is(disease));
+            query.addCriteria(Criteria.where("disease").is(disease));
         }
-
-/*        query.addCriteria(Criteria.where("name").is(name))
-                .addCriteria(Criteria.where("surname").is(surname))
-                .addCriteria(Criteria.where("voivodeship").is(voivodeship))
-                .addCriteria(Criteria.where("cost").gt(costFrom).lt(costTo))
-                .addCriteria(Criteria.where("numberOfTreatments").is(treatments))
-                .addCriteria(Criteria.where("whichTime").is(whichTime))
-                .addCriteria(Criteria.where("disease").is(disease));
-        */
 
 
         return template.find(query, Reservation.class, "reservations");
-
     }
-
 
 
 

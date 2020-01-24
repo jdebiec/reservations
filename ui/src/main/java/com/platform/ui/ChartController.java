@@ -4,17 +4,13 @@ import com.platform.reservations.DataController;
 import com.platform.reservations.model.Reservation;
 import com.platform.reservations.service.ReservationService;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -23,8 +19,6 @@ import java.util.List;
 public class ChartController {
 
     final DataController dataController;
-    private ReservationService service;
-
     @FXML
     public TextField nameField;
     @FXML
@@ -44,7 +38,8 @@ public class ChartController {
     @FXML
     public Button searchButton;
     @FXML
-    public ListView<Reservation> listView;
+    public ListView listView;
+    private ReservationService service;
 
 
     @Autowired
@@ -64,36 +59,20 @@ public class ChartController {
         String whichTime = whichTimeField.getText();
         String disease = diseaseField.getText();
 
-        if (name.isEmpty()){
-            name = "";
-        } else if (surname.isEmpty()){
-            surname = "";
-        } else if (voivodeship.isEmpty()){
-            voivodeship = "";
-        } else if (costFrom.isEmpty()) {
-            costFrom = "";
-        } else if(costTo.isEmpty()) {
-            costTo = "";
-        } else if (treatments.isEmpty()) {
-            treatments = "";
-        } else if (whichTime.isEmpty()) {
-            whichTime = "";
-        } else if (disease.isEmpty()) {
-            disease = "";
-        }
 
         List<Reservation> listToConvert = service.filterData(name, surname, voivodeship, costFrom,
                 costTo, treatments, whichTime, disease);
 
-        for (Reservation element : listToConvert) {
-            System.out.println(element);
 
+        ObservableList<Reservation> listToAdd = FXCollections.observableArrayList(listToConvert);
+
+        listToAdd.addListener((ListChangeListener) change -> {});
+
+        if (!listView.getItems().isEmpty()) {
+            listView.getItems().clear();
         }
 
-      //  ObservableList<Reservation> listToAdd = FXCollections.observableArrayList(listToConvert);
+        listView.setItems(listToAdd);
 
-       // listView.setItems(listToAdd);
     }
-
-
 }
