@@ -4,12 +4,11 @@ import com.mongodb.client.MongoClient;
 import com.platform.reservations.model.Reservation;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 @Service
 public class ReservationService {
@@ -26,26 +25,48 @@ public class ReservationService {
         this.template = template;
     }
 
-    public void filterData(String name, String surname, String voivodeship,
-            String costFrom, String costTo, String treatments,
-            String reservedFrom, String reservedTo, String arrival,
-            String departure, String whichTime, String disease) {
+    public List<Reservation> filterData(String name, String surname, String voivodeship,
+                                        String costFrom, String costTo, String treatments,
+                                        String whichTime, String disease) {
 
         Query query = new Query();
-            query.addCriteria(Criteria.where("name").is(name))
-                    .addCriteria(Criteria.where("surname").is(surname))
-                    .addCriteria(Criteria.where("voivodeship").is(voivodeship))
-                    .addCriteria(Criteria.where("cost").gt(costFrom).lt(costTo))
-                    .addCriteria(Criteria.where("numberOfTreatments").is(treatments))
-                    .addCriteria(Criteria.where("reservationDate"))
-                    .addCriteria(Criteria.where("arrivalDate").is(arrival))
-                    .addCriteria(Criteria.where("departureDate").is(departure))
-                    .addCriteria(Criteria.where("whichTime").is(whichTime))
-                    .addCriteria(Criteria.where("disease").is(disease));
+
+        if (!name.isEmpty()) {
+            query.addCriteria(Criteria.where("name").is(name));
+        }
+        if (!surname.isEmpty()) {
+            query.addCriteria(Criteria.where("surname").is(surname));
+        }
+        if (!voivodeship.isEmpty()) {
+            query.addCriteria(Criteria.where("voivodeship").is(voivodeship));
+        }
+        if (!costFrom.isEmpty() && !costTo.isEmpty()) {
+            query.addCriteria(Criteria.where("cost").gt(costFrom).lt(costTo));
+        }
+        if (!treatments.isEmpty()) {
+            query.addCriteria(Criteria.where("numberOfTreatments").is(treatments));
+        }
+        if (!whichTime.isEmpty()) {
+            query.addCriteria(Criteria.where("whichTime").is(whichTime));
+        }
+        if (!disease.isEmpty()) {
+           query.addCriteria(Criteria.where("disease").is(disease));
+        }
+
+/*        query.addCriteria(Criteria.where("name").is(name))
+                .addCriteria(Criteria.where("surname").is(surname))
+                .addCriteria(Criteria.where("voivodeship").is(voivodeship))
+                .addCriteria(Criteria.where("cost").gt(costFrom).lt(costTo))
+                .addCriteria(Criteria.where("numberOfTreatments").is(treatments))
+                .addCriteria(Criteria.where("whichTime").is(whichTime))
+                .addCriteria(Criteria.where("disease").is(disease));
+        */
 
 
+        return template.find(query, Reservation.class, "reservations");
 
     }
+
 
 
 

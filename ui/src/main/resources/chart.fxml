@@ -12,9 +12,8 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="935.0"
-      style="-fx-background-color: whitesmoke;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="com.platform.ui.ChartController">
+<Pane fx:controller="com.platform.ui.ChartController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="935.0"
+      style="-fx-background-color: whitesmoke;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TabPane prefHeight="681.0" prefWidth="935.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -31,27 +30,31 @@ fx:controller="com.platform.ui.ChartController">
                               </Text>
                            </children>
                         </TextFlow>
-                        <Text layoutX="83.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię i nazwisko" />
-                        <Text layoutX="500.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data przyjazdu" />
-                        <Text layoutX="500.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data rezerwacji" />
-                        <Text layoutX="500.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data wyjazdu" />
-                        <Text layoutX="83.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Województwo" />
-                        <Text layoutX="83.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cena od" />
-                        <Text layoutX="83.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cena do" />
-                        <TextField layoutX="198.0" layoutY="131.0" />
-                        <TextField layoutX="198.0" layoutY="270.0" />
-                        <TextField layoutX="198.0" layoutY="344.0" />
-                        <TextField layoutX="198.0" layoutY="200.0" />
+                        <Text layoutX="83.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię" />
+                        <Text layoutX="500.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data przyjazdu" />
+                        <Text layoutX="500.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data rezerwacji od" />
+                        <Text layoutX="500.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data wyjazdu" />
+                        <Text layoutX="80.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Województwo" />
+                        <Text layoutX="83.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cena od" />
+                        <Text layoutX="83.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cena do" />
+                        <TextField fx:id="nameField" id="nameField" layoutX="198.0" layoutY="131.0" />
+                        <TextField fx:id="priceFromField" layoutX="198.0" layoutY="341.0" />
+                        <TextField fx:id="priceToField" layoutX="198.0" layoutY="415.0" />
+                        <TextField fx:id="voivodeshipField" layoutX="198.0" layoutY="271.0" />
                         <DatePicker layoutX="627.0" layoutY="131.0" />
-                        <DatePicker layoutX="627.0" layoutY="200.0" />
                         <DatePicker layoutX="627.0" layoutY="271.0" />
-                        <Text layoutX="84.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość zabiegów" />
-                        <Text layoutX="501.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schorzenie" />
-                        <Text layoutX="500.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Który raz" />
-                        <TextField layoutX="198.0" layoutY="411.0" />
-                        <TextField layoutX="627.0" layoutY="411.0" prefHeight="26.0" prefWidth="172.0" />
-                        <TextField layoutX="627.0" layoutY="344.0" prefHeight="26.0" prefWidth="172.0" />
-                        <Button layoutX="442.0" layoutY="517.0" mnemonicParsing="false" text="Szukaj"  onAction="#onButtonClicked" AnchorPane.bottomAnchor="108.60000000000005" AnchorPane.rightAnchor="443.6" />
+                        <DatePicker layoutX="627.0" layoutY="342.0" />
+                        <Text layoutX="84.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość zabiegów" />
+                        <Text layoutX="501.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schorzenie" />
+                        <Text layoutX="500.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Który raz" />
+                        <TextField fx:id="treatmentsField" layoutX="198.0" layoutY="482.0" />
+                        <TextField fx:id="diseaseField" layoutX="627.0" layoutY="482.0" prefHeight="26.0" prefWidth="172.0" />
+                        <TextField fx:id="whichTimeField" layoutX="627.0" layoutY="415.0" prefHeight="26.0" prefWidth="172.0" />
+                        <Button fx:id="searchButton"  onAction="#onButtonClick" layoutX="443.0" layoutY="566.0" mnemonicParsing="false"  text="Szukaj" AnchorPane.bottomAnchor="59.60000000000002" AnchorPane.rightAnchor="442.6" />
+                        <Text layoutX="80.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko" />
+                        <TextField fx:id="surnameField" layoutX="198.0" layoutY="199.0" />
+                        <Text layoutX="500.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data rezerwacji do" />
+                        <DatePicker layoutX="626.0" layoutY="199.0" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -59,7 +62,7 @@ fx:controller="com.platform.ui.ChartController">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ListView prefHeight="649.0" prefWidth="935.0" />
+                        <ListView id="listView" prefHeight="649.0" prefWidth="935.0" />
                      </children></AnchorPane>
             </content>
           </Tab>

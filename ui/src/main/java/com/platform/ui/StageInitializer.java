@@ -1,8 +1,9 @@
 package com.platform.ui;
 
-import com.platform.reservations.model.Reservation;
 import com.platform.reservations.service.ReservationService;
 import com.platform.ui.ChartApplication.StageReadyEvent;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,6 +30,8 @@ public class StageInitializer implements ApplicationListener<ChartApplication.St
     private ApplicationContext applicationContext;
     private ReservationService service;
 
+
+
     public StageInitializer(@Value("${spring.application.ui.title}") String applicationTitle, ApplicationContext applicationContext, ReservationService service) {
         this.applicationTitle = applicationTitle;
         this.applicationContext = applicationContext;
@@ -46,36 +49,6 @@ public class StageInitializer implements ApplicationListener<ChartApplication.St
             stage.setScene(new Scene(parent, 935, 681));
             stage.setTitle(applicationTitle);
 
-            TextField imie = new TextField("Imię");
-            TextField nazwisko = new TextField("Nazwisko");
-            TextField wojewodztwo = new TextField("Województwo");
-            TextField cenaOd = new TextField("Cena od");
-            TextField cenaDo = new TextField("Cena do");
-            TextField zabiegi = new TextField("Ilość zabiegów");
-            TextField dataRezerwacjiOd = new TextField("Data rezerwacji od");
-            TextField dataRezerwacjiDo = new TextField("Data rezerwacji do");
-            TextField przyjazd = new TextField("Data przyjazdu");
-            TextField wyjazd = new TextField("Data wyjazdu");
-            TextField ktoryRaz = new TextField("Który raz");
-            TextField schorzenie = new TextField("Schorzenie");
-
-            Button button = new Button("Szukaj");
-            button.setOnAction(click -> {
-            String name = String.valueOf(imie);
-            String surname = String.valueOf(nazwisko);
-            String voivodeship = String.valueOf(wojewodztwo);
-            String costFrom = String.valueOf(cenaOd);
-            String costTo = String.valueOf(cenaDo);
-            String treatments = String.valueOf(zabiegi);
-            String reservedFrom = String.valueOf(dataRezerwacjiOd);
-            String reservedTo = String.valueOf(dataRezerwacjiDo);
-            String arrival = String.valueOf(przyjazd);
-            String departure = String.valueOf(wyjazd);
-            String whichTime = String.valueOf(ktoryRaz);
-            String disease = String.valueOf(schorzenie);
-
-            service.filterData();
-            });
 
             stage.show();
         } catch (IOException e) {
