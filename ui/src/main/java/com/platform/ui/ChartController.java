@@ -39,6 +39,7 @@ public class ChartController {
     public Button searchButton;
     @FXML
     public ListView listView;
+
     private ReservationService service;
 
 
@@ -66,7 +67,8 @@ public class ChartController {
 
         ObservableList<Reservation> listToAdd = FXCollections.observableArrayList(listToConvert);
 
-        listToAdd.addListener((ListChangeListener) change -> {});
+        listToAdd.addListener((ListChangeListener) change -> {
+        });
 
         if (!listView.getItems().isEmpty()) {
             listView.getItems().clear();
@@ -76,3 +78,6 @@ public class ChartController {
 
     }
 }
+
+
+

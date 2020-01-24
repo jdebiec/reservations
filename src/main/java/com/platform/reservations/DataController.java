@@ -1,23 +1,14 @@
 package com.platform.reservations;
 
-import com.platform.reservations.model.Reservation;
 import com.platform.reservations.repository.ReservationRepository;
 import com.platform.reservations.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.http.HttpMethod;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class DataController {
-    /* Klasa-kontroler odpowiedzialna za wysyłanie i odbieranie zapytań RESTowych,
-     *  na podstawie których będą przeprowadzane odpowiednie operacje na obiektach z bazy danych
-     * np. wyszukiwanie pasujących rezerwacji po danych filtrach wyszukiwania lub
-     * w razie potrzeby dodawanie nowych obiektów, usuwanie ich i aktualizacja istniejących
-     * */
+
 
     private final ReservationRepository repository;
     private final ReservationService service;
@@ -32,10 +23,5 @@ public class DataController {
         this.mongoTemplate = mongoTemplate;
     }
 
-
-/*    @GetMapping("/find")
-    public List<Reservation> getAll(){
-        return service.findWithAlzheimer();
-    }*/
 
 }
